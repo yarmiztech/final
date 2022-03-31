@@ -1,0 +1,33 @@
+<odoo>
+ <record id="ezp_cash_collection.action_cashier_direct_collection" model="ir.actions.act_window">
+        <field name="name">Cashier Collection</field>
+        <field name="res_model">cashier.direct.collection</field>
+<!--        <field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem name="Cashier  Collection" id="ezp_cash_collection.menu_cashier_direct_collectionS"
+              action="ezp_cash_collection.action_cashier_direct_collection" sequence="11"
+              parent="ezp_estimate.menu_cashier" groups="ezp_cash_collection.group_cash_owner"/>
+
+
+
+      <menuitem name="Inventory Sale Purchase"
+              id="inventory_sale_purchase.menu_inv_po_so" sequence="4"
+              parent="ezp_cash_collection.menu_chq_main" groups="ezp_cash_collection.group_data_user,ezp_cash_collection.group_cash_owner"
+              action="inventory_sale_purchase.actions_inventory_purchase_sale"/>
+
+     <record id="sales_sales_invoice_cancel_inhe" model="ir.ui.view">
+        <field name="name">sales.invoice.cancel.inh</field>
+        <field name="model">sales.invoice.cancel</field>
+        <field name="inherit_id" ref="enz_multi_updations.sales_sales_invoice_cancel"/>
+        <field name="priority">30</field>
+        <field name="arch" type="xml">
+                  <xpath expr="//button[@name='action_cancel_create']" position="after">
+                     <button name="action_cancel_create_all" class="oe_highlight" states="draft" string="Cancel"
+                            type="object"/>
+                  </xpath>
+        </field>
+     </record>
+</odoo>
